@@ -1,0 +1,117 @@
+@media (max-width: 575.98px) { 
+
+    .loadingIcon{
+        height: 150px;
+        width:   150px;
+    }
+    .navBarTitle{
+        font-size: 20PX;
+    }
+    .imageStyle{
+        width: 32px;
+        height: 32px;
+    }
+    .navBarPageTitle{
+        font-size: 16PX;
+    }
+    .loginTitle{
+        font-size: 28PX;
+    }
+    .loginDes{
+        font-size: 14PX;
+    }
+    .loginBtn{
+        font-size: 15px;
+        width: 50%;
+    }
+    .App-logo {
+        height: 30vmin;
+     }
+     .errorIcon{
+        height: 280px;
+        width: 280px;
+    }
+    
+}
+
+
+@media (min-width: 576px) and (max-width: 768px) { 
+    .loadingIcon{
+        height: 160px;
+        width:   160px;
+    }
+    .navBarTitle{
+        font-size: 23PX;
+    }
+    .imageStyle{
+        width: 38px;
+        height: 38px;
+    }
+    .navBarPageTitle{
+        font-size: 18PX;
+    }
+    .loginTitle{
+        font-size: 34PX;
+    }
+    .loginDes{
+        font-size: 16PX;
+    }
+    .loginBtn{
+        font-size: 16px;
+        width: 60%;
+    }
+    .App-logo {
+        height: 36vmin;
+     }
+     .errorIcon{
+        height: 290px;
+        width: 290px;
+    }
+
+}
+
+ @media (min-width: 768px) and (max-width: 992px) { 
+    .loadingIcon{
+        height: 180px;
+        width:   180px;
+    }
+    .navBarTitle{
+        font-size: 25PX;
+    }
+    .imageStyle{
+        width: 44px;
+        height: 44px;
+    }
+    .navBarPageTitle{
+        font-size: 18PX;
+    }
+    .loginTitle{
+        font-size: 38PX;
+    }
+    .loginDes{
+        font-size: 16PX;
+    }
+    .loginBtn{
+        font-size: 18px;
+        width: 80%;
+    }
+    .App-logo {
+        height: 40vmin;
+        margin-top: 3rem;
+     }
+     .errorIcon{
+        height: 300px;
+        width: 300px;
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1200px) { 
+    .loginBtn{
+        width: 50%;
+    }
+}
+@media (min-width:1200px) and (max-width: 1400px) { 
+    
+
+}

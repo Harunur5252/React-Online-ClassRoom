@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <clipPath id="clip-class1">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="class1" clip-path="url(#clip-class1)">
+    <rect width="1920" height="1080" fill="#151446"/>
+    <text id="REACT_JS_TUTORIAL" data-name="REACT JS TUTORIAL" transform="translate(151 357)" fill="#fff" font-size="123" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">REACT JS TUTORIAL</tspan></text>
+    <text id="_01" data-name="01" transform="translate(151 805)" fill="#fff" font-size="348" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">01</tspan></text>
+    <text id="Learn_With_Rabbil_Hasan" data-name="Learn With Rabbil Hasan" transform="translate(151 461)" fill="#fff" font-size="67" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Learn With Rabbil Hasan</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,305 @@
+
+.loadingIcon{
+    height: 210px;
+    width: 210px;
+}
+.errorIcon{
+    height: 310px;
+    width: 310px;
+}
+
+.navBarTitle{
+    color: #2B2B2B !important;
+    font-size: 29PX;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+}
+.navBarPageTitle{
+    text-decoration: none !important;
+    color: #4e4a4a;
+    font-size: 20PX;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+}
+
+.navBarPageTitle:hover{
+    color: #0dbde9 !important;
+}
+.loginTitle{
+    color: #2B2B2B !important;
+    font-size: 50PX;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+}
+.loginDes{
+    color: #2B2B2B !important;
+    font-size: 18PX;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+.imageStyle{
+    width: 50px;
+    height: 50px;
+}
+.loginBtn{
+    text-decoration: none;
+    margin: 0 auto;
+    color: #ffffff !important;
+    font-size: 20px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+    width: 50%;
+}
+
+
+.button{
+    text-decoration: none !important;
+}
+.loginBtn:hover{
+    text-decoration: none !important;
+    background-color: #000080 !important;
+}
+.marginTop{
+    margin-top: 1rem;
+}
+.learningPontTitle{
+    margin-top: 1rem;
+    color: #2B2B2B;
+    font-size: 22px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+}
+.learningPontDes{
+    margin-top: 1rem;
+    color: #2B2B2B;
+    font-size: 14px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+
+.learningPontCard{
+    margin: 5px 5px 5px 5px;
+    height: 15rem;
+    padding: 40px 30px 40px 30px;
+    box-shadow: 0 0 4px 0 rgba(88, 0, 230, 0.2);
+}
+.learningPontCard:hover{
+    box-shadow: 0 0 8px 0 rgba(0, 23, 230, 0.2);
+}
+.playBtn{
+    color: #1708e4;
+    font-size: 60px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+.videoTitle{
+    color: #4b4848;
+    font-size: 20px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+}
+.videoCard{
+    padding: 1rem 1rem 1rem 1rem;
+}
+.videoDes{
+    color: #2B2B2B;
+    font-size: 14px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+.videoBtn{
+    background-color: #1700e4;
+    color:white;
+}
+.videoBtn:hover{
+    background-color: #00b6e4;
+    color:white;
+}
+.paymentDes{
+    color: #2B2B2B;
+    font-size: 14px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+.paymentMargin{
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: #ffffff;
+}
+.paymentCount{
+    color: #2B2B2B;
+    font-size: 22px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+}
+.paymentBox{
+    margin: 30px;
+    height: 250px;
+    width: 500px;
+    background-color: #9e09da;
+}
+
+.paymentCard{
+    margin: 5px 5px 5px 5px;
+    height: 8rem;
+    padding: 30px 20px 30px 20px;
+    box-shadow: 0 0 4px 0 rgba(88, 0, 230, 0.2);
+}
+.paymentCard:hover{
+    box-shadow: 0 0 8px 0 rgba(0, 23, 230, 0.2);
+}
+.carouselMarginUp{
+    margin-top: 6rem;
+}
+.carouselBtn{
+    color: #1708e4;
+    font-size: 30px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+}
+.carouselCard{
+    border-radius: 2px;
+    border: none !important;
+    margin: 2px 2px 2px 2px;
+    box-shadow: 0 0 4px 0 rgba(0,115,230,0.2);
+}
+
+.carouselCard:hover{
+    box-shadow: 0 0 8px 0 rgba(88, 0, 230, 0.2);
+}
+.findMoreTutorialCard{
+    margin: 5px 5px 5px 5px;
+    height: 10rem;
+    padding: 40px 30px 40px 30px;
+    box-shadow: 0 0 4px 0 rgba(86, 5, 218, 0.2)!important;
+}
+.findMoreTutorialCard:hover{
+    box-shadow: 0 0 8px 0 rgba(86, 5, 218, 0.2) !important;
+}
+.findMoreTutorialTitle{
+    color: #665c5c !important;
+    font-size: 22px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+}
+.footerTitle{
+    color: #2b2727;
+    font-size: 22px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+}
+.socialLink{
+    text-decoration: none !important;
+    color: #746f6f;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+.socialLink:hover{
+    text-decoration: none;
+    color: #0cc8e9;
+}
+.copyrightSection{
+    background-color: #1e0225;
+    padding: 20px 20px 20px 20px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+.socialBtn{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+.carouselItemBtn{
+    font-size: 20px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+}
+.carouselItemBtn:hover{
+    color: #09e0e7;
+}
+.footerBackColor{
+    background-color: #f1ebf3;
+}
+.App-logo {
+    height: 50vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+.learnVideo{
+    font-size: 5px;
+  }
+.registrationBtn{
+    text-decoration: none !important;
+    background-color: rgb(31, 30, 39);
+    color: #ffffff !important;
+    font-size: 16px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+  }
+.registrationBtn:hover{
+    text-decoration: none !important;
+    background-color:#06e7dc !important;
+}
+.form-control:focus{
+    border-radius: 2px !important;
+    border-color: #0073E6 !important;
+    box-shadow: 0 0 4px 0 rgba(0,115,230,0.2) !important;
+}
+.passwoedReset{
+    text-decoration: none !important;
+    color: #746f6f;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+.passwoedReset:hover{
+    text-decoration: none;
+    color: #0ce9e9;
+}
+.loginPanelCard{
+    margin: 5px 5px 5px 5px;
+    height: 22rem;
+    padding: 60px 35px 60px 35px;
+    box-shadow: 0 0 4px 0 rgba(88, 0, 230, 0.2);
+}
+.loginPanelCard:hover{
+    box-shadow: 0 0 8px 0 rgba(0, 23, 230, 0.2);
+}
+.modalLoginTitle{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18PX;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+.modalloginBtn{
+    text-decoration: none !important;
+    color: #ffffff !important;
+    font-size: 16px;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 400;
+}
+.modalloginBtn:hover{
+    text-decoration: none !important;
+    background-color: rgb(2, 224, 224) !important;
+}
+
+
