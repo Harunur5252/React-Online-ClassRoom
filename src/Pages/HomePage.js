@@ -7,6 +7,7 @@ import Payment from '../components/Payment/Payment'
 import Carousel from '../components/Carousel/Carousel'
 import FindMoreSection from '../components/FindMoreSection/FindMoreSection'
 import Footer from '../components/Footer/Footer'
+import JoinClassRoom from '../components/JoinClassRoom/JoinClassRoom';
 
 class HomePage extends Component {
 
@@ -22,6 +23,7 @@ class HomePage extends Component {
                  <Login/>
                  <LearningPoint/>
                  <Video/>
+                 <JoinClassRoom />
                  <Payment/>
                  <Carousel/>
                  <FindMoreSection/>

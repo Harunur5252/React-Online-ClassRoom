@@ -3,6 +3,7 @@ import {Navbar,Nav} from 'react-bootstrap'
 import ReactImage from '../../assets/images/react-hexagon.png'
 import '../../assets/css/custom.css'
 import '../../assets/css/responsive.css'
+import '../../assets/css/sideNav.css'
 import {NavLink} from "react-router-dom"
 class TopNavigation extends Component {
 
@@ -25,9 +26,11 @@ class TopNavigation extends Component {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/" className="navBarPageTitle">Home</NavLink></Nav.Link>
-                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/coursePlane" className="navBarPageTitle">Course Plan</NavLink></Nav.Link>
-                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/classPage" className="navBarPageTitle">Free Class</NavLink></Nav.Link>
+                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/coursePlane" className="navBarPageTitle">CoursePlan</NavLink></Nav.Link>
+                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/classPage" className="navBarPageTitle">FreeClass</NavLink></Nav.Link>
                             <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/registrationPage" className="navBarPageTitle">Registration</NavLink></Nav.Link>
+                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/about" className="navBarPageTitle">About</NavLink></Nav.Link>
+                            <Nav.Link><NavLink  exact activeStyle={{color:'#00a8ee'}} to="/contact" className="navBarPageTitle">Contact</NavLink></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                </Navbar>

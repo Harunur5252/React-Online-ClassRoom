@@ -1,6 +1,6 @@
 .sidenavClose {
     height: 100%;
-    width: 60px;
+    width: 4%;
     position: fixed;
     z-index: 10;
     top: 0;
@@ -11,9 +11,10 @@
     padding-top: 80px;
 }
 
+
 .sidenavOpen {
     height: 100%;
-    width: 220px;
+    width: 15%;
     position: fixed;
     z-index: 10;
     top: 0;
@@ -46,11 +47,48 @@
 .NavItem:hover{
    color:#61DAFB !important;
 }
-.mainDiv{
-    margin: 6rem;
+.mydiv{
+    width: 96% ;
+    margin-top: 7%;
+    float: right;
+}
+.mydiv2{
+    width: 84%;
+    float: right;
+    margin-top: 7%;
 }
 .pageDecorationLink{
     text-decoration: none !important;
+}
+.text-decoration{
+    text-decoration: none !important;
+}
+
+.margin{
+    margin-left: 80%;
+}
+.size{
+    font-size: 60px;
+}
+
+.playIconSize{
+    color: #1708e4;
+    font-size: 28px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+.margin-left-playIcon{
+  margin-left: 40%;
+}
+.color{
+    color: orangered !important;
+}
+.fontIconColor{
+    color: white !important; 
+}
+.fontIconColor:hover{
+    color: rgb(233, 13, 13) !important; 
 }
 
 

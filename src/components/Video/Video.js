@@ -32,8 +32,8 @@ class Video extends Component {
                                 <div>
                                     <FontAwesomeIcon onClick={this.modalSHow} className="playBtn" icon={faPlayCircle} />
                                     <h3 className="videoTitle text-center">React Course Plan</h3>
-                                    <p className="videoDes text-center">React Course Plan
-                                     The overall skills gained from tthis project based courses will prepare you for any type of project development. In this course you will be taught how to write a complete project with React JS including User Panel + Admin Panel. Source code will also be provided with each class of the course, so you can easily practice manually. This project uses React JS with PHP for the server site and MySQL for the database.</p>
+                                    <p className="videoDes text-center text-justify">React Course Plan
+                                     The overall skills gained from this project based courses will prepare you for any type of project development. In this course you will be taught how to write a complete project with React JS including User Panel + Admin Panel. Source code will also be provided with each class of the course, so you can easily practice manually. This project uses React JS with PHP for the server site and MySQL for the database.</p>
                                 </div>
                             </Col>
                         </Row>

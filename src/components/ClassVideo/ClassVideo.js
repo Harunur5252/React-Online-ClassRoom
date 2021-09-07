@@ -7,16 +7,6 @@ import {faPlayCircle} from '@fortawesome/free-solid-svg-icons'
 import "video-react/dist/video-react.css";
 import { Player, BigPlayButton,ControlBar,ReplayControl,ForwardControl } from 'video-react'
 import {Container,Row,Col,Button,Modal,Card} from 'react-bootstrap';
-import ClassOne from '../../assets/images/class1.svg'
-import ClassTwo from '../../assets/images/class2.svg'
-import ClassThree from '../../assets/images/class3.svg'
-import ClassFour from '../../assets/images/class4.svg'
-import ClassFive from '../../assets/images/class5.svg'
-import ClassSix from '../../assets/images/class6.svg'
-import ClassSeven from '../../assets/images/class7.svg'
-import ClassEight from '../../assets/images/class8.svg'
-import ClassNine from '../../assets/images/class9.svg'
-import ClassTen from '../../assets/images/class10.svg'
 import HarunImage from '../../assets/images/image.jpg'
 
 class ClassVideo extends Component {
