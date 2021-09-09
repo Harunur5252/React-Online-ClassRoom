@@ -14,7 +14,7 @@ class Login extends Component {
                         <Row>
                             <Col lg={6} md={6} sm={12} className="">
                                 <h1   className="loginTitle">React</h1>
-                                <span className="loginDes">Learn With Rabbil Hasan</span><br/>
+                                <span className="loginDes">Learn With Harunur Roshid</span><br/>
                                 <span className="loginDes">Learn Something Good & Do Something Better</span><br/>
                                 <Link to="/userLogin" className="button"><Button className="mt-2 loginBtn"  block>Login</Button></Link>
                             </Col>
