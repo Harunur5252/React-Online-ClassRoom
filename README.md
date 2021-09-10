@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# React-Online-ClassRoom
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### project description
+This is a online class room design project
+
+## Project Picture Samples
+![React-Online-ClassRoom!](/src/assets/images/React-Online-ClassRoom.PNG "React-Online-ClassRoom")
+
+![learning section!](/src/assets/images/learning.PNG "learning section")
+
+![go class section!](/src/assets/images/goClass.PNG "go class section")
+
+![class room section!](/src/assets/images/classRoom.PNG "class room section")
+
+![free class section!](/src/assets/images/freeClass.PNG "free class section")
 
 ## Available Scripts
 
