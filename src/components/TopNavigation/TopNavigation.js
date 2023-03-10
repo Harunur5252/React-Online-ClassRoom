@@ -26,7 +26,8 @@ class TopNavigation extends Component {
             <NavLink to="/">
               <img
                 src="https://t3.ftcdn.net/jpg/00/95/63/46/500_F_95634697_FNZyHu3bNM50diamQDPhiaPdjk05vgD1.jpg"
-                height={60} width={70}
+                height={60}
+                width={70}
                 alt="courseImg"
               />
             </NavLink>
@@ -65,16 +66,7 @@ class TopNavigation extends Component {
                   FreeClass
                 </NavLink>
               </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  exact
-                  activeStyle={{ color: "#00a8ee" }}
-                  to="/registrationPage"
-                  className="navBarPageTitle"
-                >
-                  Registration
-                </NavLink>
-              </Nav.Link>
+
               <Nav.Link>
                 <NavLink
                   exact
@@ -93,6 +85,16 @@ class TopNavigation extends Component {
                   className="navBarPageTitle"
                 >
                   Contact
+                </NavLink>
+              </Nav.Link>
+              <Nav.Link>
+                <NavLink
+                  exact
+                  activeStyle={{ color: "#00a8ee" }}
+                  to="/registrationPage"
+                  className="navBarPageTitle"
+                >
+                  Registration
                 </NavLink>
               </Nav.Link>
             </Nav>

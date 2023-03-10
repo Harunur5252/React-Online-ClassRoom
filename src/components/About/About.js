@@ -1,81 +1,124 @@
+import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import HarunImg from "../../assets/images/Harun (3).jpg";
+import DataLoading from "../DataLoading/DataLoading";
 
 export default class About extends Component {
+  state = {
+    loading: true,
+    loadingAbout:true,
+    FooterInfo: {},
+    AboutInfo: {},
+  };
+  async componentDidMount() {
+    await this.fetchedFooterInfo();
+    await this.fetchedAboutInfo();
+  }
+  fetchedFooterInfo = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:1337/api/Footer?populate=*"
+      );
+      this.setState({
+        FooterInfo: {
+          address: res.data?.data?.attributes?.address,
+          phone: res.data?.data?.attributes?.phone,
+          email: res.data?.data?.attributes?.email,
+          youtube_link: res.data?.data?.attributes?.youtube_link,
+          facebook_link: res.data?.data?.attributes?.facebook_link,
+          name: res.data?.data?.attributes?.name,
+          profession: res.data?.data?.attributes?.profession,
+          img_link: res.data?.data?.attributes?.img_link?.data?.attributes?.url,
+        },
+        loading: false,
+      });
+    } catch (err) {
+      console.log("FooterInfo error", err.response?.data?.error?.message);
+    }
+  };
+
+  fetchedAboutInfo = async () => {
+    try {
+      const res = await axios.get("http://localhost:1337/api/About");
+      this.setState({
+        AboutInfo: {
+          mission: res.data?.data?.attributes?.mission,
+          vision: res.data?.data?.attributes?.vision,
+          about_my: res.data?.data?.attributes?.about_my,
+        },
+        loadingAbout: false,
+      });
+    } catch (err) {
+      console.log("AboutInfo error", err.response?.data?.error?.message);
+    }
+  };
+
   render() {
     return (
       <Fragment>
         <Container className="mt-5">
           <Row>
-            <Col lg={5} md={6} sm={12}>
-              <img src={HarunImg} style={{ height: "200px", width: "200px" }} alt="courseInstructor" />
-            </Col>
-            <Col lg={5} md={6} sm={12} className="py-5">
-              <div>
-                <p className="about">
-                  <b>Name : </b> Harunur Roshid
-                </p>
-                <p className="about">
-                  <b>Occupation : </b> FrontEnd Developer
-                </p>
-                <p className="about">
-                  <b>Contact Number : </b> 01307216770
-                </p>
-                <p className="about">
-                  <b>Email : </b> hroshid695@gmail.com
-                </p>
-                <p className="about">
-                  <b>Address : </b> Khilkhet,Dhaka
-                </p>
-              </div>
-            </Col>
+            {this.state.loading ? (
+              <DataLoading />
+            ) : (
+              <>
+                <Col lg={5} md={6} sm={12}>
+                  <img
+                    src={this.state.FooterInfo?.img_link}
+                    style={{ height: "200px", width: "200px" }}
+                    alt="courseInstructor"
+                  />
+                </Col>
+                <Col lg={5} md={6} sm={12} className="py-5">
+                  <div>
+                    <p className="about">
+                      <b>Name : </b> {this.state.FooterInfo?.name}
+                    </p>
+                    <p className="about">
+                      <b>Occupation : </b> {this.state.FooterInfo?.profession}
+                    </p>
+                    <p className="about">
+                      <b>Contact Number : </b> {this.state.FooterInfo?.phone}
+                    </p>
+                    <p className="about">
+                      <b>Email : </b> {this.state.FooterInfo?.email}
+                    </p>
+                    <p className="about">
+                      <b>Address : </b> {this.state.FooterInfo?.address}
+                    </p>
+                  </div>
+                </Col>
+              </>
+            )}
           </Row>
           <Row>
-            <Col sm={12} md={12} lg={12} className="mt-3">
-              <p className="text-justify">
-                <h1 className="serviceName">Who i AM</h1>
-                <hr />
-                <p className="serviceDescription text-justify">
-                  I am a highly talented, experienced, professional and
-                  cooperative software engineer, I am working in programming and
-                  web world for more than 4 years .I assure you a wide range of
-                  quality IT services. Web development, mobile app development
-                  and UI design the major filed i am expert in. Moreover i have
-                  teaching passion. I makes video tutorial to share my
-                  knowledge. My over all skill makes me a complete software
-                  developer, so you can hire me for your projects
-                </p>
+            {this.state.loadingAbout ? (
+              <DataLoading />
+            ) : (
+              <>
+                <Col sm={12} md={12} lg={12} className="mt-3">
+                  <p className="text-justify">
+                    <h1 className="serviceName">Who i AM</h1>
+                    <hr />
+                    <p className="serviceDescription text-justify">
+                      {this.state.AboutInfo?.about_my}
+                    </p>
 
-                <h1 className="serviceName">My Mission</h1>
-                <hr />
-                <p className="serviceDescription text-justify">
-                  My mission is to develop unique idea and quality software that
-                  will secure top ranking in marketplace, people's system and
-                  people's heart. Develop robust, secure, dynamic, responsive
-                  software for all platform (computer, tab, mobile phone).
-                  Provide top notch customer service, customization of our
-                  product according to customer demand and current technology.
-                  Planning advanced techniques for optimization, user experience
-                  and satisfaction of customer for our software. Planning
-                  flexible software that will not be bounded by any linguistic
-                  or regional restriction. I want to flourish software that can
-                  blow people's heart and soul
-                </p>
+                    <h1 className="serviceName">My Mission</h1>
+                    <hr />
+                    <p className="serviceDescription text-justify">
+                      {this.state.AboutInfo?.mission}
+                    </p>
 
-                <h1 className="serviceName">My Vision</h1>
-                <hr />
-                <p className="serviceDescription text-justify">
-                  My vision is to brand our firm as the best firm in the world.
-                  Secure the top place among software providers for both local
-                  and international market. Brand our country as the best
-                  software provider country. Create employment for youth on the
-                  field of both software and corporate level. Provide our
-                  country and world with superior software. Nurture youths to be
-                  highly skilled software engineers
-                </p>
-              </p>
-            </Col>
+                    <h1 className="serviceName">My Vision</h1>
+                    <hr />
+                    <p className="serviceDescription text-justify">
+                      {this.state.AboutInfo?.vision}
+                    </p>
+                  </p>
+                </Col>
+              </>
+            )}
           </Row>
         </Container>
       </Fragment>

@@ -1,22 +1,51 @@
-import React, { Component,Fragment } from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import axios from "axios";
+import React, { Component, Fragment } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import DataLoading from "../DataLoading/DataLoading";
 class Terms extends Component {
-    render() {
-            return (
-            <Fragment>
-                 <Container className="mt-5">
-                    <Row>
-                       <Col sm={12} md={12} lg={12}>
-                       <h2 className="playBtnIcon">Terms & Conditions System</h2>
-                       <p className="serviceDescription text-justify">BY ACCESSING OR USING THIS SITE YOU REPRESENT THAT YOU HAVE THE FULL AUTHORITY TO ACT TO BIND YOURSELF, ANY THIRD PARTY, COMPANY, OR LEGAL ENTITY, AND THAT YOUR USE AND/OR INTERACTION, AS WELL AS CONTINUING TO USE OR INTERACT, WITH THE SITE CONSTITUTES YOUR HAVING READ AND AGREED TO THESE TERMS OF USE AS WELL AS OTHER AGREEMENTS THAT WE MAY POST ON THE SITE.</p>
-                        <p className="serviceDescription text-justify">BY ACCESSING OR USING THIS SITE YOU REPRESENT THAT YOU HAVE THE FULL AUTHORITY TO ACT TO BIND YOURSELF, ANY THIRD PARTY, COMPANY, OR LEGAL ENTITY, AND THAT YOUR USE AND/OR INTERACTION, AS WELL AS CONTINUING TO USE OR INTERACT, WITH THE SITE CONSTITUTES YOUR HAVING READ AND AGREED TO THESE TERMS OF USE AS WELL AS OTHER AGREEMENTS THAT WE MAY POST ON THE SITE.</p>
-                           
-                       </Col>
-                    </Row>
-                </Container>
-            </Fragment>
-        );
-        }
+  state = {
+    loading: true,
+    TermInfo: {},
+  };
+  async componentDidMount() {
+    await this.fetchedTermInfo();
+  }
+  fetchedTermInfo = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:1337/api/Terms-and-condition"
+      );
+      this.setState({
+        TermInfo: {
+          description: res.data?.data?.attributes?.description,
+        },
+        loading: false,
+      });
+    } catch (err) {
+      console.log("TermInfo error", err.response?.data?.error?.message);
+    }
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Container className="mt-5">
+          <Row>
+            {this.state.loading ? (
+              <DataLoading />
+            ) : (
+              <Col sm={12} md={12} lg={12}>
+                <h2 className="playBtnIcon">Terms & Conditions System</h2>
+                <p className="serviceDescription text-justify">
+                  {this.state.TermInfo.description}
+                </p>
+              </Col>
+            )}
+          </Row>
+        </Container>
+      </Fragment>
+    );
+  }
 }
 
 export default Terms;

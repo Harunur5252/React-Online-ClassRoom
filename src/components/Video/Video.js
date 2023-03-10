@@ -10,14 +10,38 @@ import {
   ReplayControl,
   ForwardControl,
 } from "video-react";
+import axios from "axios";
+import DataLoading from "../DataLoading/DataLoading";
 
 class Video extends Component {
   constructor() {
     super();
     this.state = {
       show: false,
+      videoInfo: {},
+      loading: true,
     };
   }
+
+  async componentDidMount() {
+    await this.fetchedVideoInfo();
+  }
+  fetchedVideoInfo = async () => {
+    try {
+      const res = await axios.get("http://localhost:1337/api/Video");
+      this.setState({
+        videoInfo: {
+          id: res?.data?.data?.id,
+          title: res?.data?.data?.attributes?.title,
+          description: res?.data?.data?.attributes?.description,
+          video_link: res?.data?.data?.attributes?.video_link,
+        },
+        loading: false,
+      });
+    } catch (err) {
+      console.log("videoInfo error", err.response?.data?.error?.message);
+    }
+  };
 
   modalClose = () => {
     this.setState({ show: false });
@@ -31,26 +55,25 @@ class Video extends Component {
       <Fragment>
         <Container className="text-center mt-5">
           <Row>
-            <Col lg={12} md={12} sm={12} className="videoCard">
-              <div>
-                <FontAwesomeIcon
-                  onClick={this.modalSHow}
-                  className="playBtn"
-                  icon={faPlayCircle}
-                />
-                <h3 className="videoTitle text-center">React Course Plan</h3>
-                <p className="videoDes text-center text-justify">
-                  React Course Plan The overall skills gained from this project
-                  based courses will prepare you for any type of project
-                  development. In this course you will be taught how to write a
-                  complete project with React JS including User Panel + Admin
-                  Panel. Source code will also be provided with each class of
-                  the course, so you can easily practice manually. This project
-                  uses React JS with PHP for the server site and MySQL for the
-                  database.
-                </p>
-              </div>
-            </Col>
+            {this.state.loading ? (
+              <DataLoading />
+            ) : (
+              <Col lg={12} md={12} sm={12} className="videoCard">
+                <div>
+                  <FontAwesomeIcon
+                    onClick={this.modalSHow}
+                    className="playBtn"
+                    icon={faPlayCircle}
+                  />
+                  <h3 className="videoTitle text-center">
+                    {this.state?.videoInfo?.title}
+                  </h3>
+                  <p className="videoDes text-center text-justify">
+                    {this.state?.videoInfo?.description}
+                  </p>
+                </div>
+              </Col>
+            )}
           </Row>
         </Container>
 
@@ -59,7 +82,7 @@ class Video extends Component {
             <Player
               poster=""
               startTime={0}
-              src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+              src={this.state?.videoInfo?.video_link}
             >
               <BigPlayButton position="center" />
 

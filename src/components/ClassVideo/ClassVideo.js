@@ -14,14 +14,35 @@ import {
 } from "video-react";
 import { Container, Row, Col, Button, Modal, Card } from "react-bootstrap";
 import HarunImage from "../../assets/images/image.jpg";
+import axios from "axios";
+import DataLoading from "../DataLoading/DataLoading";
 
 class ClassVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
+      freeClassInfos: [],
+      loading: true,
     };
   }
+
+  async componentDidMount() {
+    await this.fetchedFreeClassInfo();
+  }
+  fetchedFreeClassInfo = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:1337/api/Free-class?populate=*"
+      );
+      this.setState({
+        freeClassInfos: res.data?.data?.attributes?.freeClasses,
+        loading: false,
+      });
+    } catch (err) {
+      console.log("freeClassInfos error", err.response?.data?.error?.message);
+    }
+  };
 
   modalClose = () => {
     this.setState({ show: false });
@@ -36,108 +57,51 @@ class ClassVideo extends Component {
       height: "300px",
       width: "300px",
     };
-
+    // console.log(this.state.freeClassInfos)
     return (
       <Fragment>
         <Container className="text-center mt-4">
           <Row>
-            <Col lg={3} sm={12} md={3} className="p-2">
-              <Card className="carouselCard">
-                <Card.Img
-                  variant="top"
-                  src="https://react.rabbil.com/images/class1.svg"
-                />
-                <Card.Body>
-                  <Card.Title>
-                    {" "}
-                    <FontAwesomeIcon
-                      onClick={this.modalSHow}
-                      className="carouselBtn"
-                      icon={faPlayCircle}
-                    />
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="videoDes">Introduction</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={3} sm={12} md={3} className="p-2">
-              <Card className="carouselCard">
-                <Card.Img
-                  variant="top"
-                  src="https://react.rabbil.com/images/class1.svg"
-                />
-                <Card.Body>
-                  <Card.Title>
-                    {" "}
-                    <FontAwesomeIcon
-                      onClick={this.modalSHow}
-                      className="carouselBtn"
-                      icon={faPlayCircle}
-                    />
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="videoDes">Introduction</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={3} sm={12} md={3} className="p-2">
-              <Card className="carouselCard">
-                <Card.Img
-                  variant="top"
-                  src="https://react.rabbil.com/images/class1.svg"
-                />
-                <Card.Body>
-                  <Card.Title>
-                    {" "}
-                    <FontAwesomeIcon
-                      onClick={this.modalSHow}
-                      className="carouselBtn"
-                      icon={faPlayCircle}
-                    />
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="videoDes">Introduction</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={3} sm={12} md={3} className="p-2">
-              <Card className="carouselCard">
-                <Card.Img
-                  variant="top"
-                  src="https://react.rabbil.com/images/class1.svg"
-                />
-                <Card.Body>
-                  <Card.Title>
-                    {" "}
-                    <FontAwesomeIcon
-                      onClick={this.modalSHow}
-                      className="carouselBtn"
-                      icon={faPlayCircle}
-                    />
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="videoDes">Introduction</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+            {this.state.loading ? (
+              <DataLoading />
+            ) : (
+              this.state?.freeClassInfos?.map((freeClass) => {
+                return (
+                  <>
+                    <Col
+                      lg={3}
+                      sm={12}
+                      md={3}
+                      className="p-2"
+                      key={freeClass?.id}
+                    >
+                      <Card className="carouselCard">
+                        <Card.Img variant="top" src={freeClass?.img_link} />
+                        <Card.Body>
+                          <Card.Title>
+                            {" "}
+                            <FontAwesomeIcon
+                              onClick={this.modalSHow}
+                              className="carouselBtn"
+                              icon={faPlayCircle}
+                            />
+                          </Card.Title>
+                          <Card.Text>
+                            <p className="videoDes">{freeClass?.title}</p>
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </>
+                );
+              })
+            )}
           </Row>
         </Container>
 
         <Modal size="lg" show={this.state.show} onHide={this.modalClose}>
           <Modal.Body>
-            <Player
-              poster={HarunImage}
-              startTime={0}
-              src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-            >
+            <Player poster={HarunImage} startTime={0} src="">
               <BigPlayButton position="center" />
 
               <ControlBar autoHide={false}>
