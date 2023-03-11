@@ -1,5 +1,6 @@
 import React, { Component, Fragment, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import PageLoading from "../components/PageLoading/PageLoading";
 
 
@@ -77,6 +78,18 @@ class AppRoute extends Component {
             </Route>
           </Switch>
         </Suspense>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </Fragment>
     );
   }

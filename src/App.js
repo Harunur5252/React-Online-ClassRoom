@@ -1,12 +1,12 @@
 import React from 'react'
 import AppRoute from './router/AppRoute'
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
         <AppRoute/>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
