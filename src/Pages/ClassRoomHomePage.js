@@ -13,6 +13,7 @@ import {
 } from "video-react";
 import Menu from "../components/Menu/Menu";
 import videoImage from "../assets/images/image.jpg";
+import { Context } from "../context/Context";
 
 export default class ClassRoomHomePage extends Component {
   constructor() {
@@ -21,7 +22,7 @@ export default class ClassRoomHomePage extends Component {
       show: false,
     };
   }
-
+  static contextType = Context;
   modalClose = () => {
     this.setState({ show: false });
   };
@@ -30,6 +31,12 @@ export default class ClassRoomHomePage extends Component {
   };
 
   render() {
+    const context = this.context;
+    const findTotalClassUpload =
+      context?.paymentInfo?.paymentInfo?.paymentOthersData?.find((a) => {
+        return a;
+      });
+
     return (
       <Fragment>
         <title>ClassRoomHome</title>
@@ -39,7 +46,9 @@ export default class ClassRoomHomePage extends Component {
               <Col lg={3} sm={12} md={3}>
                 <a target="_blank" rel="noreferrer" className="button">
                   <div className="findMoreTutorialCard text-center">
-                    <h2 className="findMoreTutorialTitle m-1 color">339</h2>
+                    <h2 className="findMoreTutorialTitle m-1 color">
+                      {findTotalClassUpload?.count}
+                    </h2>
                     <p style={{ color: "blue" }}>Total Class Uploaded</p>
                   </div>
                 </a>
@@ -48,7 +57,9 @@ export default class ClassRoomHomePage extends Component {
               <Col lg={3} sm={12} md={3}>
                 <a target="_blank" rel="noreferrer" className="button">
                   <div className="findMoreTutorialCard text-center">
-                    <h2 className="findMoreTutorialTitle m-1 color">8</h2>
+                    <h2 className="findMoreTutorialTitle m-1 color">
+                      {context?.fileInfo?.files?.length}
+                    </h2>
                     <p style={{ color: "blue" }}>Your File Uploaded</p>
                   </div>
                 </a>
@@ -57,7 +68,9 @@ export default class ClassRoomHomePage extends Component {
               <Col lg={3} sm={12} md={3}>
                 <a target="_blank" rel="noreferrer" className="button">
                   <div className="findMoreTutorialCard text-center">
-                    <h2 className="findMoreTutorialTitle m-1 color">2</h2>
+                    <h2 className="findMoreTutorialTitle m-1 color">
+                      {context?.messagesInfo?.messages?.length}
+                    </h2>
                     <p style={{ color: "blue" }}>Message From Instructor</p>
                   </div>
                 </a>

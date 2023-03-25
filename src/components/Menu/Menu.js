@@ -13,6 +13,7 @@ import {
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -23,9 +24,9 @@ export default class Menu extends Component {
       NavText: "d-none",
       mainDiv: "mydiv",
     };
-
     this.showHideSideNav = this.showHideSideNav.bind(this);
   }
+  static contextType = Context;
 
   showHideSideNav() {
     if (this.state.sideNav === false) {
@@ -46,6 +47,7 @@ export default class Menu extends Component {
   }
 
   render() {
+    const { user, handleLogout } = this.context;
     return (
       <Fragment>
         <title>{this.props.title}</title>
@@ -62,7 +64,7 @@ export default class Menu extends Component {
           >
             <FontAwesomeIcon icon={faBars} />
           </Navbar.Brand>
-          <b>MD. HARUN</b>
+          <b>{user?.username?.toUpperCase()}</b>
         </Navbar>
 
         <div className={this.state.sideNavClass}>
@@ -140,11 +142,23 @@ export default class Menu extends Component {
               <span className={this.state.NavText}>&nbsp; Profile</span>
             </Link>
           </NavLink>
-          <Link className="ml-3 NavItem text-decoration" exact to="/">
+          <div className="ml-3 NavItem">
             {" "}
-            <FontAwesomeIcon icon={faPowerOff} />{" "}
-            <span className={this.state.NavText}>&nbsp; Sign Out</span>
-          </Link>
+            <FontAwesomeIcon
+              style={{ cursor: "pointer" }}
+              icon={faPowerOff}
+            />{" "}
+            <span className={this.state.NavText} onClick={handleLogout}>
+              &nbsp;{" "}
+              <Link
+                exact
+                to="/"
+                style={{ cursor: "pointer", textDecoration: "none" }}
+              >
+                Sign Out
+              </Link>
+            </span>
+          </div>
         </div>
 
         <div

@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
+import { Navbar, Nav, Button } from "react-bootstrap";
 
-import "../../assets/css/custom.css";
-import "../../assets/css/responsive.css";
-import "../../assets/css/sideNav.css";
 import { NavLink } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 class TopNavigation extends Component {
   constructor(props) {
@@ -16,7 +12,10 @@ class TopNavigation extends Component {
     };
   }
 
+  static contextType = Context;
+
   render() {
+    const { handleLogout, user, token } = this.context;
     return (
       <Fragment>
         <title>{this.state.pageTitle}</title>
@@ -87,16 +86,26 @@ class TopNavigation extends Component {
                   Contact
                 </NavLink>
               </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  exact
-                  activeStyle={{ color: "#00a8ee" }}
-                  to="/registrationPage"
-                  className="navBarPageTitle"
-                >
-                  Registration
-                </NavLink>
-              </Nav.Link>
+              {!user && !token ? (
+                <Nav.Link>
+                  <NavLink
+                    exact
+                    activeStyle={{ color: "#00a8ee" }}
+                    to="/registrationPage"
+                    className="navBarPageTitle"
+                  >
+                    Registration
+                  </NavLink>
+                </Nav.Link>
+              ):null}
+
+              {user && token ? (
+                <Nav.Link>
+                  <Button variant="primary" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </Nav.Link>
+              ):null}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

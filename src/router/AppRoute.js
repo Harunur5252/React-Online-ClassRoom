@@ -2,7 +2,8 @@ import React, { Component, Fragment, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import PageLoading from "../components/PageLoading/PageLoading";
-
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import PublicRoute from "../components/PublicRoute/PublicRoute";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
 const CoursePlanePage = React.lazy(() => import("../Pages/CoursePlanePage"));
@@ -10,7 +11,9 @@ const FreeClassPage = React.lazy(() => import("../Pages/FreeClassPage"));
 const RegistrationPage = React.lazy(() => import("../Pages/RegistrationPage"));
 const UserLoginPage = React.lazy(() => import("../Pages/UserLoginPage"));
 const ClassRoomPage = React.lazy(() => import("../Pages/ClassRoomPage"));
-const ClassRoomHomePage = React.lazy(() => import("../Pages/ClassRoomHomePage"));
+const ClassRoomHomePage = React.lazy(() =>
+  import("../Pages/ClassRoomHomePage")
+);
 const TutorialPage = React.lazy(() => import("../Pages/TutorialPage"));
 const FilesPage = React.lazy(() => import("../Pages/FilesPage"));
 const MessagesPage = React.lazy(() => import("../Pages/MessagesPage"));
@@ -21,7 +24,6 @@ const PrivacyPage = React.lazy(() => import("../Pages/PrivacyPage"));
 const TermsPage = React.lazy(() => import("../Pages/TermsPage"));
 const RefundPage = React.lazy(() => import("../Pages/RefundPage"));
 
-
 class AppRoute extends Component {
   render() {
     return (
@@ -29,52 +31,84 @@ class AppRoute extends Component {
         <Suspense fallback={<PageLoading />}>
           <Switch>
             <Route exact path="/">
-              <HomePage />
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
             </Route>
             <Route path="/coursePlane">
-              <CoursePlanePage />
+              <PublicRoute>
+                <CoursePlanePage />
+              </PublicRoute>
             </Route>
             <Route path="/classPage">
-              <FreeClassPage />
+              <PublicRoute>
+                <FreeClassPage />
+              </PublicRoute>
             </Route>
             <Route path="/registrationPage">
-              <RegistrationPage />
+              <PublicRoute>
+                <RegistrationPage />
+              </PublicRoute>
             </Route>
             <Route path="/userLogin">
-              <UserLoginPage />
+              <PublicRoute>
+                <UserLoginPage />
+              </PublicRoute>
             </Route>
             <Route path="/classroom">
-              <ClassRoomPage />
+              <PrivateRoute>
+                <ClassRoomPage />
+              </PrivateRoute>
             </Route>
             <Route path="/ClassRoomHome">
-              <ClassRoomHomePage />
+              <PrivateRoute>
+                <ClassRoomHomePage />
+              </PrivateRoute>
             </Route>
             <Route path="/tutorials">
-              <TutorialPage />
+              <PrivateRoute>
+                <TutorialPage />
+              </PrivateRoute>
             </Route>
             <Route path="/files">
-              <FilesPage />
+              <PrivateRoute>
+                <FilesPage />
+              </PrivateRoute>
             </Route>
             <Route path="/messages">
-              <MessagesPage />
+              <PrivateRoute>
+                <MessagesPage />
+              </PrivateRoute>
             </Route>
             <Route path="/profile">
-              <ProfilePage />
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
             </Route>
             <Route path="/about">
-              <AboutPage />
+              <PublicRoute>
+                <AboutPage />
+              </PublicRoute>
             </Route>
             <Route path="/contact">
-              <ContactPage />
+              <PublicRoute>
+                <ContactPage />
+              </PublicRoute>
             </Route>
             <Route path="/privacy">
-              <PrivacyPage />
+              <PublicRoute>
+                <PrivacyPage />
+              </PublicRoute>
             </Route>
             <Route path="/terms">
-              <TermsPage />
+              <PublicRoute>
+                <TermsPage />
+              </PublicRoute>
             </Route>
             <Route path="/refund">
-              <RefundPage />
+              <PublicRoute>
+                <RefundPage />
+              </PublicRoute>
             </Route>
           </Switch>
         </Suspense>

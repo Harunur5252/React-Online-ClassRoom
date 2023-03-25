@@ -5,6 +5,7 @@ import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import contactImg from "../../assets/images/R.jpg";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Context } from "../../context/Context";
 
 export default class Contact extends Component {
   state = {
@@ -19,6 +20,7 @@ export default class Contact extends Component {
     messageError: "",
   };
 
+  static contextType = Context
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -95,6 +97,10 @@ export default class Contact extends Component {
         toast.success("submitted successfully!");
       } catch (err) {
         this.setState({
+          fullName: "",
+          email: "",
+          phone: "",
+          message: "",
           loaded: false,
         });
         toast.error(err.response?.data?.error?.message);
@@ -103,6 +109,7 @@ export default class Contact extends Component {
   };
 
   render() {
+    const {footerInfo} = this.context
     return (
       <Fragment>
         <Container>
@@ -211,13 +218,13 @@ export default class Contact extends Component {
                 <Col lg={6} md={6} sm={12} className="m-2 px-4">
                   <h3 className="discussTitle">Discuss Now</h3>
                   <p className="videoDes">
-                    #79/6 Bhimgonj Aria, 3rd Floor Front Side, Sherpur
+                    {footerInfo?.FooterInfo?.address}
                   </p>
                   <p className="videoDes">
-                    <FontAwesomeIcon icon={faEnvelope} /> hroshid695@gmail.com
+                    <FontAwesomeIcon icon={faEnvelope} />  {footerInfo?.FooterInfo?.email}
                   </p>
                   <p className="videoDes">
-                    <FontAwesomeIcon icon={faPhone} /> 01307216770
+                    <FontAwesomeIcon icon={faPhone} />  {footerInfo?.FooterInfo?.phone}
                   </p>
                 </Col>
               </Row>

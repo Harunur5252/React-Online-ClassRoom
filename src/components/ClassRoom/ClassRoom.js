@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-
 import Menu from "../Menu/Menu";
 
 export default class ClassRoom extends Component {

@@ -10,38 +10,18 @@ import {
   ReplayControl,
   ForwardControl,
 } from "video-react";
-import axios from "axios";
+
 import DataLoading from "../DataLoading/DataLoading";
+import { Context } from "../../context/Context";
 
 class Video extends Component {
   constructor() {
     super();
     this.state = {
       show: false,
-      videoInfo: {},
-      loading: true,
     };
   }
-
-  async componentDidMount() {
-    await this.fetchedVideoInfo();
-  }
-  fetchedVideoInfo = async () => {
-    try {
-      const res = await axios.get("http://localhost:1337/api/Video");
-      this.setState({
-        videoInfo: {
-          id: res?.data?.data?.id,
-          title: res?.data?.data?.attributes?.title,
-          description: res?.data?.data?.attributes?.description,
-          video_link: res?.data?.data?.attributes?.video_link,
-        },
-        loading: false,
-      });
-    } catch (err) {
-      console.log("videoInfo error", err.response?.data?.error?.message);
-    }
-  };
+  static contextType = Context
 
   modalClose = () => {
     this.setState({ show: false });
@@ -51,11 +31,12 @@ class Video extends Component {
   };
 
   render() {
+    const {videoInfo} = this.context
     return (
       <Fragment>
         <Container className="text-center mt-5">
           <Row>
-            {this.state.loading ? (
+            {videoInfo.loading ? (
               <DataLoading />
             ) : (
               <Col lg={12} md={12} sm={12} className="videoCard">
@@ -66,10 +47,10 @@ class Video extends Component {
                     icon={faPlayCircle}
                   />
                   <h3 className="videoTitle text-center">
-                    {this.state?.videoInfo?.title}
+                    {videoInfo?.videoInfo?.title}
                   </h3>
                   <p className="videoDes text-center text-justify">
-                    {this.state?.videoInfo?.description}
+                    {videoInfo?.videoInfo?.description}
                   </p>
                 </div>
               </Col>
@@ -82,7 +63,7 @@ class Video extends Component {
             <Player
               poster=""
               startTime={0}
-              src={this.state?.videoInfo?.video_link}
+              src={videoInfo?.videoInfo?.video_link}
             >
               <BigPlayButton position="center" />
 

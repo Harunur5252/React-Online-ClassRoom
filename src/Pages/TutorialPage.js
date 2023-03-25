@@ -18,6 +18,7 @@ import {
 } from "video-react";
 import Menu from "../components/Menu/Menu";
 import videoImage from "../assets/images/image.jpg";
+import { Context } from "../context/Context";
 
 export default class TutorialPage extends Component {
   constructor() {
@@ -27,6 +28,7 @@ export default class TutorialPage extends Component {
     };
   }
 
+  static contextType = Context;
   modalClose = () => {
     this.setState({ show: false });
   };
@@ -35,14 +37,15 @@ export default class TutorialPage extends Component {
   };
 
   render() {
-    const products = [
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Introduction",
+    const { tutorialInfo } = this.context;
+    const products = tutorialInfo?.tutorials.map((tutorial) => {
+      return {
+        id: tutorial?.id,
+        topic: tutorial?.topic,
+        title: tutorial?.title,
         source: (
           <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
+            href={tutorial?.souce_link}
             target="_blank"
           >
             <FontAwesomeIcon icon={faDownload} />
@@ -55,628 +58,650 @@ export default class TutorialPage extends Component {
             icon={faPlayCircle}
           />
         ),
-      },
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Tools & UI",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Boiler plate",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Component Framework",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Google Fonts",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Getting started",
-        title: "Favicon & Main Div",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Top banner Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Service Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Nav Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Chart Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Chart Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Summary Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Project Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Course Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Introduction",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Introduction",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Video Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Video Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Component",
-        title: "Video Component",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Review Section",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Review Section",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Review Section",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Footer",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Footer",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Footer",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Footer",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-      {
-        id: 1,
-        topic: "Section",
-        title: "Footer",
-        source: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-        play: (
-          <FontAwesomeIcon
-            onClick={this.modalSHow}
-            className="playBtnIcon"
-            icon={faPlayCircle}
-          />
-        ),
-      },
-    ];
+      };
+    });
+    // const products = [
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Introduction",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Tools & UI",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Boiler plate",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Component Framework",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Google Fonts",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Getting started",
+    //     title: "Favicon & Main Div",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Top banner Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Service Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Nav Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Chart Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Chart Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Summary Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Project Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Course Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Introduction",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Introduction",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Video Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Video Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Component",
+    //     title: "Video Component",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Review Section",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Review Section",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Review Section",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Footer",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Footer",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Footer",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Footer",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    //   {
+    //     id: 1,
+    //     topic: "Section",
+    //     title: "Footer",
+    //     source: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //     play: (
+    //       <FontAwesomeIcon
+    //         onClick={this.modalSHow}
+    //         className="playBtnIcon"
+    //         icon={faPlayCircle}
+    //       />
+    //     ),
+    //   },
+    // ];
     const { SearchBar } = Search;
 
     const columns = [
@@ -685,35 +710,30 @@ export default class TutorialPage extends Component {
         text: "NO",
         align: "center",
         footerAlign: "center",
-        footer: "Footer 1",
       },
       {
         dataField: "topic",
         text: "Topic",
         align: "center",
         footerAlign: "center",
-        footer: "Footer 2",
       },
       {
         dataField: "title",
         text: "Title",
         align: "center",
         footerAlign: "center",
-        footer: "Footer 3",
       },
       {
         dataField: "source",
         text: "Source",
         align: "center",
         footerAlign: "center",
-        footer: "Footer 4",
       },
       {
         dataField: "play",
         text: "Play",
         align: "center",
         footerAlign: "center",
-        footer: "Footer 5",
       },
     ];
 
@@ -779,7 +799,7 @@ export default class TutorialPage extends Component {
         <Menu>
           <Container>
             <Row>
-              <Col lg={5} sm={12} md={5}>
+              {/* <Col lg={5} sm={12} md={5}>
                 <select className="form-control">
                   <option selected disabled>
                     Open this select menu
@@ -790,13 +810,13 @@ export default class TutorialPage extends Component {
                   <option value="3">React Advanced</option>
                   <option value="3">React Seo</option>
                 </select>
-              </Col>
+              </Col> */}
 
               <Col
                 lg={12}
                 sm={12}
                 md={12}
-                className="mt-5 table table-responsive"
+                className="mt-3 table table-responsive"
               >
                 <ToolkitProvider
                   keyField="id"
@@ -807,7 +827,7 @@ export default class TutorialPage extends Component {
                   {(props) => (
                     <div>
                       <Row>
-                        <Col lg={4} sm={12} md={4} className="ml-auto">
+                        <Col lg={4} sm={12} md={4} className="m-auto">
                           <div>
                             <h3>Input something</h3>
                             <SearchBar {...props.searchProps} />

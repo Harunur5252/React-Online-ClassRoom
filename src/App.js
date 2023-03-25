@@ -1,13 +1,10 @@
-import React from 'react'
-import AppRoute from './router/AppRoute'
-import {BrowserRouter} from "react-router-dom";
+import React, { Component } from "react";
+import AppRoute from "./router/AppRoute";
 
-function App() {
-  return (
-    <BrowserRouter>
-        <AppRoute/>
-    </BrowserRouter>
-  );
+class App extends Component {
+  render() {
+    return <AppRoute />;
+  }
 }
 
 export default App;

@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 import DataLoading from "../DataLoading/DataLoading";
 
 class Payment extends Component {
@@ -9,35 +9,12 @@ class Payment extends Component {
     super();
     this.state = {
       show: false,
-      loading: true,
-      paymentInfo: {},
     };
   }
-
-  async componentDidMount() {
-    await this.fetchedPaymentInfo();
-  }
-  fetchedPaymentInfo = async () => {
-    try {
-      const res = await axios.get(
-        "http://localhost:1337/api/Payment-other?populate=*"
-      );
-      this.setState({
-        paymentInfo: {
-          payment_img_link: res.data?.data?.attributes?.payment_img_link,
-          payment_cove_img_link:
-            res.data?.data?.attributes?.payment_cove_img_link,
-          descriptions: res.data?.data?.attributes?.descriptions,
-          paymentOthersData: res.data?.data?.attributes?.paymentOthersData,
-        },
-        loading: false,
-      });
-    } catch (err) {
-      console.log("paymentInfo error", err.response?.data?.error?.message);
-    }
-  };
+  static contextType = Context;
 
   render() {
+    const { user,paymentInfo } = this.context;
     const bakashLogo = {
       height: "110px",
       width: "110px",
@@ -49,7 +26,7 @@ class Payment extends Component {
       <Fragment>
         <Container className="mt-5">
           <Row>
-            {this.state.loading ? (
+            {paymentInfo.loading ? (
               <DataLoading />
             ) : (
               <>
@@ -57,9 +34,9 @@ class Payment extends Component {
                   <img
                     style={bakashLogo}
                     alt="paymentImg"
-                    src={this.state?.paymentInfo?.payment_img_link}
+                    src={paymentInfo?.paymentInfo?.payment_img_link}
                   />
-                  {this.state?.paymentInfo?.descriptions?.map((des) => {
+                  {paymentInfo?.paymentInfo?.descriptions?.map((des) => {
                     return (
                       <p className="text-justify paymentDes" key={des?.id}>
                         {des?.description}
@@ -68,7 +45,7 @@ class Payment extends Component {
                   })}
 
                   <Row className="paymentMargin text-center">
-                    {this.state?.paymentInfo?.paymentOthersData?.map(
+                    {paymentInfo?.paymentInfo?.paymentOthersData?.map(
                       (paymentOtherDatum) => {
                         return (
                           <Col lg={4} sm={12} md={6}>
@@ -93,14 +70,16 @@ class Payment extends Component {
                 <Col lg={6} sm={12} md={6}>
                   <img
                     style={paymentBannerPic}
-                    src={this.state?.paymentInfo?.payment_cove_img_link}
+                    src={paymentInfo?.paymentInfo?.payment_cove_img_link}
                     alt="paymentCoverImg"
                   />
-                  <Link to="/registrationPage">
-                    <Button className="loginBtn mt-2" size="sm" type="submit">
-                      Join Now
-                    </Button>
-                  </Link>
+                  {!user ? (
+                    <Link to="/registrationPage">
+                      <Button className="loginBtn mt-2" size="sm" type="submit">
+                        Join Now
+                      </Button>
+                    </Link>
+                  ) : null}
                 </Col>
               </>
             )}

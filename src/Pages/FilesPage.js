@@ -9,15 +9,20 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Menu from "../components/Menu/Menu";
+import { Context } from "../context/Context";
+import DataLoading from '../components/DataLoading/DataLoading'
 
 export default class FilesPage extends Component {
+  static contextType = Context;
   render() {
-    const products = [
-      {
-        fileName: "Lumen Migration Commands",
+    const { fileInfo } = this.context;
+
+    const products = fileInfo?.files?.map((file) => {
+      return {
+        fileName: file?.name,
         download: (
           <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
+            href={file?.file_link}
             target="_blank"
             download
             rel="noreferrer"
@@ -25,20 +30,37 @@ export default class FilesPage extends Component {
             <FontAwesomeIcon icon={faDownload} />
           </a>
         ),
-      },
-      {
-        fileName: "Laravel Rest API Presentation Slide",
-        download: (
-          <a
-            href="https://github.com/Harunur5252/React-Online-ClassRoom"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
-        ),
-      },
-    ];
+      };
+    });
+
+    // const products = [
+    //   {
+    //     fileName: "Lumen Migration Commands",
+    //     download: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //         download
+    //         rel="noreferrer"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //   },
+    //   {
+    //     fileName: "Laravel Rest API Presentation Slide",
+    //     download: (
+    //       <a
+    //         href="https://github.com/Harunur5252/React-Online-ClassRoom"
+    //         target="_blank"
+    //         rel="noreferrer"
+    //       >
+    //         <FontAwesomeIcon icon={faDownload} />
+    //       </a>
+    //     ),
+    //   },
+    // ];
+
     const { SearchBar } = Search;
 
     const columns = [
@@ -125,13 +147,17 @@ export default class FilesPage extends Component {
                           </div>
                         </Col>
                       </Row>
-                      <BootstrapTable
-                        keyField="id"
-                        data={products}
-                        columns={columns}
-                        pagination={paginationFactory(options)}
-                        {...props.baseProps}
-                      />
+                      {fileInfo?.loading ? (
+                        <DataLoading />
+                      ) : (
+                        <BootstrapTable
+                          keyField="id"
+                          data={products}
+                          columns={columns}
+                          pagination={paginationFactory(options)}
+                          {...props.baseProps}
+                        />
+                      )}
                     </div>
                   )}
                 </ToolkitProvider>

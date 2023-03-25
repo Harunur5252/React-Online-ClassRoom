@@ -1,10 +1,6 @@
 import React, { Component, Fragment } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
-import "video-react/dist/video-react.css";
 import {
   Player,
   BigPlayButton,
@@ -14,35 +10,17 @@ import {
 } from "video-react";
 import { Container, Row, Col, Button, Modal, Card } from "react-bootstrap";
 import HarunImage from "../../assets/images/image.jpg";
-import axios from "axios";
 import DataLoading from "../DataLoading/DataLoading";
+import { Context } from "../../context/Context";
 
 class ClassVideo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      freeClassInfos: [],
-      loading: true,
     };
   }
-
-  async componentDidMount() {
-    await this.fetchedFreeClassInfo();
-  }
-  fetchedFreeClassInfo = async () => {
-    try {
-      const res = await axios.get(
-        "http://localhost:1337/api/Free-class?populate=*"
-      );
-      this.setState({
-        freeClassInfos: res.data?.data?.attributes?.freeClasses,
-        loading: false,
-      });
-    } catch (err) {
-      console.log("freeClassInfos error", err.response?.data?.error?.message);
-    }
-  };
+  static contextType = Context;
 
   modalClose = () => {
     this.setState({ show: false });
@@ -57,15 +35,15 @@ class ClassVideo extends Component {
       height: "300px",
       width: "300px",
     };
-    // console.log(this.state.freeClassInfos)
+    const { freeClassInfo } = this.context;
     return (
       <Fragment>
         <Container className="text-center mt-4">
           <Row>
-            {this.state.loading ? (
+            {freeClassInfo?.loading ? (
               <DataLoading />
             ) : (
-              this.state?.freeClassInfos?.map((freeClass) => {
+              freeClassInfo?.freeClassInfos?.map((freeClass) => {
                 return (
                   <>
                     <Col
@@ -92,6 +70,32 @@ class ClassVideo extends Component {
                         </Card.Body>
                       </Card>
                     </Col>
+                    
+                    <Modal
+                      size="lg"
+                      show={this.state.show}
+                      onHide={this.modalClose}
+                    >
+                      <Modal.Body>
+                        <Player
+                          poster={HarunImage}
+                          startTime={0}
+                          src={freeClass?.video_link}
+                        >
+                          <BigPlayButton position="center" />
+
+                          <ControlBar autoHide={false}>
+                            <ReplayControl seconds={5} order={2.1} />
+                            <ForwardControl seconds={5} order={3.1} />
+                          </ControlBar>
+                        </Player>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button className="videoBtn" onClick={this.modalClose}>
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                   </>
                 );
               })
@@ -99,9 +103,9 @@ class ClassVideo extends Component {
           </Row>
         </Container>
 
-        <Modal size="lg" show={this.state.show} onHide={this.modalClose}>
+        {/* <Modal size="lg" show={this.state.show} onHide={this.modalClose}>
           <Modal.Body>
-            <Player poster={HarunImage} startTime={0} src="">
+            <Player poster={HarunImage} startTime={0} src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4">
               <BigPlayButton position="center" />
 
               <ControlBar autoHide={false}>
@@ -115,7 +119,7 @@ class ClassVideo extends Component {
               Close
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
       </Fragment>
     );
   }

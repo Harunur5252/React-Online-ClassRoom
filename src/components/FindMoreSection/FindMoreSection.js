@@ -1,32 +1,12 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Context } from "../../context/Context";
 import DataLoading from "../DataLoading/DataLoading";
 
 class FindMoreSection extends Component {
-  state = {
-    loading: true,
-    otherTechnologyInfos: [],
-  };
-  async componentDidMount() {
-    await this.fetchedOtherTechnologyInfo();
-  }
-  fetchedOtherTechnologyInfo = async () => {
-    try {
-      const res = await axios.get(
-        "http://localhost:1337/api/Other-technology?populate=*"
-      );
-      this.setState({
-        otherTechnologyInfos: res.data?.data?.attributes?.technologies,
-        loading: false,
-      });
-    } catch (err) {
-      console.log(
-        "otherTechnologyInfos error",
-        err.response?.data?.error?.message
-      );
-    }
-  };
+
+static contextType=Context
 
   render() {
     const findMoreImgeSize = {
@@ -34,6 +14,7 @@ class FindMoreSection extends Component {
       height: "60px",
       width: "60px",
     };
+    const {otherTechnologyInfo}=this.context
 
     return (
       <Fragment>
@@ -41,10 +22,10 @@ class FindMoreSection extends Component {
           <h4 className="videoTitle">Find More</h4>
           <p className="videoDes">Get Other Tutorial Series By Harun</p>
           <Row>
-            {this.state.loading ? (
+            {otherTechnologyInfo.loading ? (
               <DataLoading />
             ) : (
-              this.state.otherTechnologyInfos?.map((otherTechnology) => {
+              otherTechnologyInfo.otherTechnologyInfos?.map((otherTechnology) => {
                 return (
                   <Col lg={3} sm={12} md={3} key={otherTechnology?.id}>
                     <a

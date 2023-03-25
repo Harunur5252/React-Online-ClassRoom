@@ -1,49 +1,26 @@
 import React, { Component, Fragment } from "react";
-import { Container, Row, Col, Jumbotron } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import {
   faMapMarker,
   faPhone,
   faEnvelope,
-  faGreaterThan,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import DataLoading from '../DataLoading/DataLoading'
+import DataLoading from "../DataLoading/DataLoading";
+import { Context } from "../../context/Context";
 
 class Footer extends Component {
-  state = {
-    loading: true,
-    FooterInfo: {},
-  };
-  async componentDidMount() {
-    await this.fetchedFooterInfo();
-  }
-  fetchedFooterInfo = async () => {
-    try {
-      const res = await axios.get("http://localhost:1337/api/Footer");
-      this.setState({
-        FooterInfo: {
-          address: res.data?.data?.attributes?.address,
-          phone: res.data?.data?.attributes?.phone,
-          email: res.data?.data?.attributes?.email,
-          youtube_link: res.data?.data?.attributes?.youtube_link,
-          facebook_link: res.data?.data?.attributes?.facebook_link,
-        },
-        loading: false,
-      });
-    } catch (err) {
-      console.log("FooterInfo error", err.response?.data?.error?.message);
-    }
-  };
+  static contextType = Context;
 
   render() {
+    const { footerInfo } = this.context;
     return (
       <Fragment>
         <Container fluid={true} className="text-center mt-5 footerBackColor">
           <Row>
-            {this.state.loading ? (
+            {footerInfo?.loading ? (
               <DataLoading />
             ) : (
               <>
@@ -51,7 +28,7 @@ class Footer extends Component {
                   <h2 className="footerTitle">Follow Me</h2>
                   <hr />
                   <a
-                    href={this.state.FooterInfo?.facebook_link}
+                    href={footerInfo?.FooterInfo?.facebook_link}
                     target="_blank"
                     rel="noreferrer"
                     className="paymentDes socialLink"
@@ -61,7 +38,7 @@ class Footer extends Component {
                   </a>
                   <br />
                   <a
-                    href={this.state.FooterInfo?.youtube_link}
+                    href={footerInfo?.FooterInfo?.youtube_link}
                     target="_blank"
                     rel="noreferrer"
                     className="paymentDes socialLink"
@@ -76,15 +53,15 @@ class Footer extends Component {
                   <hr />
                   <p className="paymentDes">
                     <FontAwesomeIcon className="socialBtn" icon={faMapMarker} />{" "}
-                    {this.state.FooterInfo?.address}
+                    {footerInfo?.FooterInfo?.address}
                   </p>
                   <p className="paymentDes">
                     <FontAwesomeIcon className="socialBtn" icon={faPhone} />{" "}
-                    {this.state.FooterInfo?.phone}
+                    {footerInfo?.FooterInfo?.phone}
                   </p>
                   <p className="paymentDes">
                     <FontAwesomeIcon className="socialBtn" icon={faEnvelope} />{" "}
-                    {this.state.FooterInfo?.email}
+                    {footerInfo?.FooterInfo?.email}
                   </p>
                 </Col>
               </>
